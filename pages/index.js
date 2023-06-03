@@ -2,8 +2,12 @@ import HomeLayout from '@/components/layouts/HomeLayout';
 import FeedbackForm from '@/components/ui/FeedbackForm';
 import ThankYouMessage from '@/components/ui/ThankYouMessage';
 import Head from 'next/head';
+import { useContext } from 'react';
+import { AppContext } from './_app';
 
 export default function Home() {
+  const {submitted} = useContext(AppContext)
+//  console.log(submitted)
   return (
     <>
       <Head>
@@ -15,8 +19,7 @@ export default function Home() {
 
       <HomeLayout>
         <section className="md:rounded-3xl md:shadow-lg bg-[#fcfcfc37] overflow-hidden max-w-7xl mx-auto">
-          <FeedbackForm />
-          <ThankYouMessage />
+          {submitted ? <ThankYouMessage /> : <FeedbackForm /> }
         </section>
       </HomeLayout>
     </>
